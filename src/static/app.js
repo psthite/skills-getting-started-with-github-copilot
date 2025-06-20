@@ -20,13 +20,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
-        activityCard.innerHTML = `
-          <h4>${name}</h4>
-          <p>${details.description}</p>
-          <p><strong>Schedule:</strong> ${details.schedule}</p>
-          <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
-        `;
+        // Build participants list HTML
+        const participantsSection = document.createElement("div");
+        participantsSection.className = "participants-section";
 
+        const participantsTitle = document.createElement("h5");
+        participantsTitle.textContent = "Participants:";
+        participantsSection.appendChild(participantsTitle);
+
+        if (details.participants.length > 0) {
+          const participantsList = document.createElement("ul");
+          participantsList.className = "participants-list";
+
+          details.participants.forEach(email => {
+            const li = document.createElement("li");
+            li.textContent = email;
+            participantsList.appendChild(li);
+          });
+
+          participantsSection.appendChild(participantsList);
+        } else {
+          const noParticipants = document.createElement("span");
+          noParticipants.className = "no-participants";
+          noParticipants.textContent = "No participants yet";
+          participantsSection.appendChild(noParticipants);
+        }
+
+        const activityTitle = document.createElement("h4");
+        activityTitle.textContent = name;
+        activityCard.appendChild(activityTitle);
+
+        const activityDescription = document.createElement("p");
+        activityDescription.textContent = details.description;
+        activityCard.appendChild(activityDescription);
+
+        const activitySchedule = document.createElement("p");
+        const scheduleLabel = document.createElement("strong");
+        scheduleLabel.textContent = "Schedule:";
+        activitySchedule.appendChild(scheduleLabel);
+        activitySchedule.appendChild(document.createTextNode(` ${details.schedule}`));
+        activityCard.appendChild(activitySchedule);
+
+        const activityAvailability = document.createElement("p");
+        const availabilityLabel = document.createElement("strong");
+        availabilityLabel.textContent = "Availability:";
+        activityAvailability.appendChild(availabilityLabel);
+        activityAvailability.appendChild(document.createTextNode(` ${spotsLeft} spots left`));
+        activityCard.appendChild(activityAvailability);
+
+        activityCard.appendChild(participantsSection);
         activitiesList.appendChild(activityCard);
 
         // Add option to select dropdown
