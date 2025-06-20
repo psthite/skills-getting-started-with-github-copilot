@@ -159,7 +159,7 @@ footer {
 }
 
 .participants-list {
-  margin-left: 18px;
+  margin-left: var(--spacing-lg);
   margin-bottom: 0;
   color: #3949ab;
   font-size: 15px;
