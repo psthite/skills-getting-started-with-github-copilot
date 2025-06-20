@@ -55,11 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
         activityCard.appendChild(activityDescription);
 
         const activitySchedule = document.createElement("p");
-        activitySchedule.innerHTML = `<strong>Schedule:</strong> ${details.schedule}`;
+        const scheduleLabel = document.createElement("strong");
+        scheduleLabel.textContent = "Schedule:";
+        activitySchedule.appendChild(scheduleLabel);
+        activitySchedule.appendChild(document.createTextNode(` ${details.schedule}`));
         activityCard.appendChild(activitySchedule);
 
         const activityAvailability = document.createElement("p");
-        activityAvailability.innerHTML = `<strong>Availability:</strong> ${spotsLeft} spots left`;
+        const availabilityLabel = document.createElement("strong");
+        availabilityLabel.textContent = "Availability:";
+        activityAvailability.appendChild(availabilityLabel);
+        activityAvailability.appendChild(document.createTextNode(` ${spotsLeft} spots left`));
         activityCard.appendChild(activityAvailability);
 
         activityCard.appendChild(participantsSection);
