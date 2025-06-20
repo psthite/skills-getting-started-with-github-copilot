@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const participantsSection = document.createElement("div");
         participantsSection.className = "participants-section";
 
-        const participantsTitle = document.createElement("strong");
+        const participantsTitle = document.createElement("h5");
         participantsTitle.textContent = "Participants:";
         participantsSection.appendChild(participantsTitle);
 
